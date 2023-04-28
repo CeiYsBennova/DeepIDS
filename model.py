@@ -42,7 +42,6 @@ train_data['label'] = train_data['label'].replace(['DoS','Probe','R2L','U2R', 'n
 # one hot encoding
 train_data = pd.get_dummies(train_data,columns=['protocol_type','service','flag'])
 
-# split data into train and test
 X = train_data.drop('label',axis=1)
 y = train_data['label']
 
@@ -73,7 +72,7 @@ model.add(Dense(5,activation='softmax'))
 model.compile(optimizer='adam',loss='categorical_crossentropy',metrics=['accuracy'])
 
 # train model
-model.fit(X_train,y_train,epochs=10,batch_size=32,validation_data=(X_test,y_test))
+model.fit(X_train,y_train,epochs=50,batch_size=3000,validation_data=(X_test,y_test))
 
 # save model
 model.save('/content/drive/MyDrive/ML/NSL-KDD/deepids.h5')
